@@ -1,10 +1,10 @@
 <%- include('../partials/html-head') %>
-<!-- <link rel="stylesheet" href="/stylesheets/flights/new.css"> -->
+<link rel="stylesheet" href="/stylesheets/flights/new.css">
 <%- include('../partials/nav') %>
 
 <main>
   <h1><%= title %></h1>
-  <form action="/flights" method="POST"></form>
+  <form action="/flights" method="POST">
   <label for="airline-select">Airline:</label>
   <select name="airline" id="airline-select">
     <option value="" selected disabled>select airline</option>
@@ -20,9 +20,12 @@
     <option value="LAX">LAX</option>
     <option value="SAN">SAN</option>
   </select>
-  <input type="text" name="flightNo" id="flightNo-input">
-  <input type="datetime-local" name="departs" id="departs-input">
+  <label for="flightNo">Flight Number:</label>
+  <input type="text" name="flightNo" id="flightNo">
+  <label for="departs">Departure:</label>
+  <input type="datetime-local" name="departs" id="departs">
   <button type="submit">Add Flight</button>
+</form>
 </main>
 
 <%- include('../partials/footer') %>

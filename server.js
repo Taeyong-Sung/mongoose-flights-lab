@@ -28,6 +28,8 @@ app.use(
   )
 )
 
+app.use(methodOverride('_method'))
+
 // mount imported routes
 app.use('/', indexRouter)
 app.use('/flights', flightsRouter)
