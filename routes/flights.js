@@ -17,5 +17,8 @@ router.put('/:flightId', flightsCtrl.update)
 router.get('/:flightId', flightsCtrl.show)
 // EDIT flights/:flightId/edit
 router.get('/:flightId/edit', flightsCtrl.edit)
+// POST flights/:flightsId/createTicket
+router.post('/:flightId/tickets', flightsCtrl.createTicket)
+
 
 export { router }
