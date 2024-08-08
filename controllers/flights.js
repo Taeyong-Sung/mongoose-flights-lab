@@ -1,4 +1,5 @@
 import { Flight } from "../models/flight.js";
+import { Meal } from "../models/meal.js";
 
 async function index(req, res) {
   try {
@@ -22,7 +23,7 @@ function newFlight(req, res) {
 async function create(req, res) {
   try {
     await Flight.create(req.body);
-    res.redirect("/flights");
+    res.redirect(`/flights/${flight._id}`);
   } catch (error) {
     console.log(error);
     res.redirect("/");
@@ -51,10 +52,12 @@ async function update(req, res) {
 
 async function show(req, res) {
   try {
-    const flight = await Flight.findById(req.params.flightId);
+    const flight = await Flight.findById(req.params.flightId).populate('food');
+    const meals = await Meal.find({_id: {$nin: flight.food}})
     res.render("flights/show", {
       flight,
       title: "Flight Details",
+      meals
     });
   } catch (error) {
     console.log(error);
@@ -87,6 +90,18 @@ async function createTicket(req, res) {
     }
   }
   
+  async function addToFoodList(req, res) {
+    try {
+      const flight = await Flight.findById(req.params.flightId)
+      console.log(flight);
+      flight.food.push(req.body.mealId)
+      await flight.save()
+      res.redirect(`/flights/${flight._id}`)
+    } catch (error) {
+      console.log(error)
+      res.redirect('/flights')
+    }
+  }
 
 export {
   index,
@@ -97,4 +112,5 @@ export {
   show,
   edit,
   createTicket,
+  addToFoodList
 };

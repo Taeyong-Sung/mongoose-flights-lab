@@ -32,6 +32,7 @@ flightNo: {
 },
     departs: Date,
     tickets: [ticketSchema],
+    food: [{type: Schema.Types.ObjectId, ref: 'Meal'}]
 }, {
     timestamps: true
 })

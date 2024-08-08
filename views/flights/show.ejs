@@ -4,6 +4,9 @@
 
 <main>
   <h1><%= title %></h1>
+  <a href="/flights/<%= flight._id %>/edit">
+    <button>Edit Flights</button>
+  </a>
   <section>
     <div>Airline: </div>
     <div><%= flight.airline %></div>
@@ -13,22 +16,38 @@
     <div><%= flight.flightNo %></div>
     <div>Departs: </div>
     <div><%= flight.departs %></div>
-    <a href="/flights/<%= flight._id %>/edit">
-      <button>Edit Flights</button>
-    </a>
+    <div>Meal:</div>
   </section>
-  <h2>Add Ticket</h2>
+  
+  <!-- HERE -->
+  <ul>
+    <% flight.food.forEach(meal => { %>
+      <li><%= meal.name %></li>
+      <% }) %>
+    </ul>
+  </section> 
+  <%# add to cast form below this comment %>
+  <form id="add-per-to-cast" action="/flights/<%= flight._id %>/meals" method="POST">
+    <select name="mealId">
+      <% meals.forEach(meal => { %>
+        <option value="<%= meal._id %>"><%= meal.name %></option>
+        <% }) %>
+      </select>
+      <button type="submit">Add to Meal</button>
+    </form>
+    
+    <h2>Add Ticket</h2>
   <form 
-  id="add-ticket"
-  action="/flights/<%= flight._id %>/tickets"
-  method="POST">
-
-  <label for="seat-input">Seat #</label>
-  <input name="seat" required pattern="[A-F][1-9]\d?">
-  <label for="price-input">Price:</label>
-  <input type="text" name="price" id="price-input">
-  <button type="submit">Add Ticket</button>
-</form>
+    id="add-ticket"
+    action="/flights/<%= flight._id %>/tickets"
+    method="POST"> 
+    <label for="seat-input">Seat #</label>
+    <input name="seat" required pattern="[A-F][1-9]\d?">
+    <label for="price-input">Price:</label>
+    <input type="text" name="price" id="price-input">
+    <button type="submit">Add Ticket</button>
+  </form>
+    
 <% if (flight.tickets.length) { %>
   <table>
     <thead>
