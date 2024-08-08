@@ -13,9 +13,9 @@ router.post('/', flightsCtrl.create)
 router.delete('/:flightId', flightsCtrl.delete)
 // PUT flights/:flightId
 router.put('/:flightId', flightsCtrl.update)
-// SHOW localhost:3000/skills/:skillID
+// SHOW skills/:skillID
 router.get('/:flightId', flightsCtrl.show)
-
-
+// EDIT flights/:flightId/edit
+router.get('/:flightId/edit', flightsCtrl.edit)
 
 export { router }
