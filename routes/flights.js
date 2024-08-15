@@ -19,7 +19,7 @@ router.get('/:flightId', flightsCtrl.show)
 router.get('/:flightId/edit', flightsCtrl.edit)
 // POST flights/:flightsId/createTicket
 router.post('/:flightId/tickets', flightsCtrl.createTicket)
-
+//POST localhost:3000/flights/:flightId/meals/:mealId
 router.post('/:flightId/meals', flightsCtrl.addToFoodList)
 
 

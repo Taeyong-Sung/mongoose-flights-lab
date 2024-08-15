@@ -23,7 +23,7 @@ function newFlight(req, res) {
 async function create(req, res) {
   try {
     await Flight.create(req.body);
-    res.redirect(`/flights/${flight._id}`);
+    res.redirect('/flights');
   } catch (error) {
     console.log(error);
     res.redirect("/");
